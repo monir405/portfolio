@@ -1,4 +1,5 @@
-const fetch = require('node-fetch');
+// Use dynamic import for ES Modules
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 exports.handler = async (event) => {
   const { name, email, message } = JSON.parse(event.body);
@@ -35,7 +36,7 @@ exports.handler = async (event) => {
     console.error('Error sending email:', error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ message: 'Failed to send email' }),
+      body: JSON.stringify({ message: `Failed to send email: ${error.message}` }),
     };
   }
 };
