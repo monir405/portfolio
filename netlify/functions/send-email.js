@@ -18,7 +18,7 @@ exports.handler = async (event) => {
   // Set up email data
   const mailOptions = {
     from: email,
-    to: 'your-email@example.com', // Replace with the email address where you want to receive messages
+    to: 'sbmonir@mun.com', // Replace with the email address where you want to receive messages
     subject: `New message from ${name}`,
     text: message,
   };
