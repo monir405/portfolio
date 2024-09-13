@@ -1,5 +1,3 @@
-// netlify/functions/send-email.js
-
 const fetch = require('node-fetch');
 
 exports.handler = async (event) => {
@@ -8,7 +6,7 @@ exports.handler = async (event) => {
   const templateParams = {
     service_id: process.env.EMAILJS_SERVICE_ID,
     template_id: process.env.EMAILJS_TEMPLATE_ID,
-    user_id: process.env.EMAILJS_USER_ID, // Use the Private Key as User ID
+    user_id: process.env.EMAILJS_USER_ID,
     template_params: {
       name,
       email,
