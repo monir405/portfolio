@@ -1,6 +1,6 @@
-[build]
-  functions = "netlify/functions" # Specify the location of your functions directory
-  publish = "out" # Adjust if necessary; Next.js defaults to "out" for static builds
+"[build]
+functions = \"netlify/functions\"
+publish = \"out\"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs" # Ensures optimal configuration for Next.js projects
