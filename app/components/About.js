@@ -9,7 +9,7 @@ const About = () => {
       {/* Left Side - Solid Blue Background */}
       <Box
         sx={{
-          width: "30%",
+          width: { xs: "100%", md: "30%" }, // Full width on small screens
           backgroundColor: "#b3d9ff",
           display: "flex",
           alignItems: "center",
@@ -28,8 +28,8 @@ const About = () => {
             boxShadow: "0 4px 12px rgba(0, 0, 0, 0.4)",
             textAlign: "center",
             position: "absolute",
-            right: "-10%",
-            transform: "translateX(10%)",
+            right: { xs: "0%", md: "-10%" },
+            transform: { xs: "none", md: "translateX(10%)" },
           }}
         >
           <Box
@@ -91,12 +91,13 @@ const About = () => {
       {/* Right Side - White Background */}
       <Box
         sx={{
-          width: "70%",
+          width: { xs: "100%", md: "70%" }, // Full width on small screens
           display: "flex",
           alignItems: "center",
-          justifyContent: "center", // Center content horizontally
-          padding: "4rem 6rem 4rem 8rem",
+          justifyContent: "center",
+          padding: { xs: "2rem 1rem", md: "4rem 6rem 4rem 8rem" }, // Adjust padding on small screens
           position: "relative",
+          flexDirection: { xs: "column", md: "row" }, // Stack items on small screens
         }}
       >
         <Box>
@@ -119,6 +120,7 @@ const About = () => {
           <Box
             sx={{
               display: "flex",
+              flexDirection: { xs: "column", md: "row" }, // Stack items on small screens
               backgroundColor: "#e6f2ff",
               padding: "2rem",
               borderRadius: "12px",
