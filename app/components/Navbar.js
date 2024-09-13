@@ -1,22 +1,33 @@
-// components/Navbar.js
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, Box, IconButton, Menu, MenuItem } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const Navbar = () => {
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <AppBar position="static" sx={{ backgroundColor: 'black', padding: '0.5rem 0' }}>
       <Toolbar sx={{ maxWidth: '100%', display: 'flex', justifyContent: 'space-between', padding: 0 }}>
         {/* Site Title */}
         <Typography
           variant="h6"
-          sx={{ color: 'white', fontWeight: 'bold', ml: '1rem' }} // Margin-left to adjust the left padding
+          sx={{ color: 'white', fontWeight: 'bold', ml: '1rem' }}
         >
           Sadia Binte Monir
         </Typography>
 
-        {/* Navigation Links */}
-        <Box sx={{ display: 'flex' }}>
+        {/* Desktop Navigation Links */}
+        <Box sx={{ display: { xs: 'none', md: 'flex' } }}> {/* Hidden on small screens, visible on medium and larger */}
           {[
             { name: 'About', href: '#about' },
             { name: 'Qualifications', href: '#qualifications' },
@@ -28,7 +39,7 @@ const Navbar = () => {
               <Button
                 sx={{
                   color: 'white',
-                  marginLeft: '1rem', // Adds spacing between buttons
+                  marginLeft: '1rem',
                   fontSize: '1rem',
                   transition: 'transform 0.2s ease-in-out',
                   '&:hover': {
@@ -41,6 +52,45 @@ const Navbar = () => {
               </Button>
             </Link>
           ))}
+        </Box>
+
+        {/* Mobile Navigation Icon */}
+        <Box sx={{ display: { xs: 'flex', md: 'none' } }}> {/* Visible on small screens, hidden on medium and larger */}
+          <IconButton
+            color="inherit"
+            aria-label="menu"
+            onClick={handleMenuOpen}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleMenuClose}
+            sx={{ mt: '2rem' }}
+          >
+            {[
+              { name: 'About', href: '#about' },
+              { name: 'Qualifications', href: '#qualifications' },
+              { name: 'Experience', href: '#experience' },
+              { name: 'Projects', href: '#projects' },
+              { name: 'Contact', href: '#contact' },
+            ].map((item, index) => (
+              <MenuItem key={index} onClick={handleMenuClose}>
+                <Link href={item.href} passHref>
+                  <Button
+                    sx={{
+                      color: 'black',
+                      textTransform: 'none',
+                      fontSize: '1rem',
+                    }}
+                  >
+                    {item.name}
+                  </Button>
+                </Link>
+              </MenuItem>
+            ))}
+          </Menu>
         </Box>
       </Toolbar>
     </AppBar>
