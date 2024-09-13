@@ -1,5 +1,5 @@
-// Use dynamic import for ES Modules
-const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+// Import fetch dynamically as node-fetch is an ES module
+const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
 exports.handler = async (event) => {
   const { name, email, message } = JSON.parse(event.body);
@@ -16,6 +16,7 @@ exports.handler = async (event) => {
   };
 
   try {
+    // Use fetch to send the email
     const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
       method: 'POST',
       headers: {
