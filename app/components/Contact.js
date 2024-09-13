@@ -30,21 +30,10 @@ const Contact = () => {
         >
           Contact Me
         </Typography>
-        <Box 
-          component="form" 
-          action="https://formspree.io/f/xeojwgwq" // Replace with your actual Formspree endpoint URL
-          method="POST"
-          sx={{ 
-            display: 'flex', 
-            flexDirection: 'column', 
-            gap: '1rem', 
-            maxWidth: '100%', 
-            margin: '0 auto' 
-          }}
-        >
-          <TextField label="Name" name="name" variant="outlined" fullWidth required />
-          <TextField label="Email" name="email" variant="outlined" fullWidth required />
-          <TextField label="Message" name="message" variant="outlined" multiline rows={4} fullWidth required />
+        <Box component="form" sx={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '100%', margin: '0 auto' }}>
+          <TextField label="Name" variant="outlined" fullWidth />
+          <TextField label="Email" variant="outlined" fullWidth />
+          <TextField label="Message" variant="outlined" multiline rows={4} fullWidth />
           <Button 
             variant="contained" 
             color="primary" 
