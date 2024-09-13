@@ -27,29 +27,28 @@ const Contact = () => {
         </Typography>
         {/* Add Netlify form attributes */}
         <Box
-  component="form"
-  name="contact"
-  method="POST"
-  data-netlify="true"
-  netlify-honeypot="bot-field"
-  sx={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '100%', margin: '0 auto' }}
->
-  {/* Hidden fields for Netlify form handling */}
-  <input type="hidden" name="form-name" value="contact" />
-  <input type="hidden" name="bot-field" />
+          component="form"
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          sx={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '100%', margin: '0 auto' }}
+        >
+          {/* Hidden fields for Netlify form handling */}
+          <input type="hidden" name="form-name" value="contact" />
+          <input type="hidden" name="bot-field" />
 
-  <TextField label="Name" name="name" variant="outlined" fullWidth required />
-  <TextField label="Email" name="email" variant="outlined" fullWidth required />
-  <TextField label="Message" name="message" variant="outlined" multiline rows={4} fullWidth required />
+          <TextField label="Name" name="name" variant="outlined" fullWidth required />
+          <TextField label="Email" name="email" variant="outlined" fullWidth required />
+          <TextField label="Message" name="message" variant="outlined" multiline rows={4} fullWidth required />
 
-  <Button variant="contained" color="primary" type="submit" sx={{ marginBottom: '1rem' }}>
-    Send
-  </Button>
-</Box>
+          <Button variant="contained" color="primary" type="submit" sx={{ marginBottom: '1rem' }}>
+            Send
+          </Button>
+        </Box>
       </Box>
     </Box>
   );
 };
 
 export default Contact;
-
