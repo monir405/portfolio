@@ -1,35 +1,38 @@
 // netlify/functions/send-email.js
 
-const nodemailer = require('nodemailer');
+const fetch = require('node-fetch');
 
 exports.handler = async (event) => {
   const { name, email, message } = JSON.parse(event.body);
 
-  // Configure the email transport using SMTP
-  const transporter = nodemailer.createTransport({
-    host: 'smtp.example.com', // Replace with your SMTP server
-    port: 587, // Replace with the SMTP port
-    auth: {
-      user: 'your-email@example.com', // Replace with your email address
-      pass: 'your-email-password', // Replace with your email password
+  const templateParams = {
+    service_id: process.env.EMAILJS_SERVICE_ID,
+    template_id: process.env.EMAILJS_TEMPLATE_ID,
+    user_id: process.env.EMAILJS_USER_ID, // Use the Private Key as User ID
+    template_params: {
+      name,
+      email,
+      message,
     },
-  });
-
-  // Set up email data
-  const mailOptions = {
-    from: email,
-    to: 'sbmonir@mun.com', // Replace with the email address where you want to receive messages
-    subject: `New message from ${name}`,
-    text: message,
   };
 
   try {
-    // Send the email
-    await transporter.sendMail(mailOptions);
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ message: 'Email sent successfully' }),
-    };
+    const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(templateParams),
+    });
+
+    if (response.ok) {
+      return {
+        statusCode: 200,
+        body: JSON.stringify({ message: 'Email sent successfully' }),
+      };
+    } else {
+      throw new Error('Failed to send email');
+    }
   } catch (error) {
     console.error('Error sending email:', error);
     return {

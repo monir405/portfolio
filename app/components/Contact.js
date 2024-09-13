@@ -1,6 +1,5 @@
-"use client";
 import React, { useState } from 'react';
-import { Container, Typography, TextField, Button, Box } from '@mui/material';
+import { TextField, Button, Box, Typography } from '@mui/material';
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
